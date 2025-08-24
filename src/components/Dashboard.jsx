@@ -45,8 +45,8 @@ export default function Dashboard() {
     };
 
     return (
-        // Added theme-aware background - this is the ONLY styling change
-        <div className="min-h-screen bg-white dark:bg-[#131517] transition-colors duration-300">
+        // Fixed: Added min-w-full and overflow-x-hidden to prevent black space
+        <div className="min-h-screen min-w-full overflow-x-hidden bg-white dark:bg-[#131517] transition-colors duration-300">
             <Header title={getPageTitle()} />
             <div className="flex flex-row">
                 <Sidebar handleSelectedButton={clickHandler} activeButton={sidebarButton} />

@@ -13,7 +13,7 @@ import { SUBJECTS } from './data';
 // App content that uses theme
 function AppContent() {
   return (
-    <div className="min-h-screen transition-colors duration-300 bg-white dark:bg-[#131517] text-gray-900 dark:text-white">
+    <div className="min-h-screen min-w-full overflow-x-hidden transition-colors duration-300 bg-white dark:bg-[#131517] text-gray-900 dark:text-white">
       <Router>
         <Routes>
           <Route path="/" element={<AuthPage />} />
