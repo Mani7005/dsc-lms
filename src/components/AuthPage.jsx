@@ -9,7 +9,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import api from "../utils/api";
 import Dark_mode from "../assets/images/Dark mode.png"; // Add dark version
-import Light_mode from "../assets/images/Light mode.png";
+import Light_mode from "../assets/images/Light_mode.png";
 
 async function sendVerifyOtp() {
   try {

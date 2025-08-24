@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Lightbulb, FileText, Send, Sun, Moon } from "lucide-react";
 // In your actual component file, try this:
-import Light_mode from "../assets/images/Light mode.png";
+import Light_mode from "../assets/images/Light_mode.png";
 import Dark_mode from "../assets/images/Dark mode.png";
 
 // Mock useTheme hook for demo - replace with your actual import

@@ -3,7 +3,7 @@ import { useTheme } from "../context/ThemeContext"; // Add this import
 import image from '../assets/images/image.png';
 import logo from "../assets/images/logo.png";
 import gdsc from "../assets/images/gdsc.png";
-import Light_mode from "../assets/images/Light mode.png";
+import Light_mode from "../assets/images/Light_mode.png";
 import Dark_mode from "../assets/images/Dark mode.png"; // Add dark version
 //import gdsc_dark from "../assets/images/gdsc_dark.png"; // Add dark version if needed
 import axios from "axios";
