@@ -71,7 +71,7 @@ const SignUp = () => {
           <div className="flex items-center space-x-2">
             {/* Theme-aware logo */}
             <img 
-              src={isDarkMode ? Dark_mode : Light_mode} 
+              src={isDarkMode ? Dark_Mode : Dark_mode} 
               alt="Logo" 
               className="h-8 w-8 object-contain" 
             />

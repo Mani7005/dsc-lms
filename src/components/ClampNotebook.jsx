@@ -64,8 +64,8 @@ export default function ClampNotebook({ subjectCode, subjectName }) {
           {/* Logo with proper theme switching */}
           <div className="w-8 h-8 flex-shrink-0">
             <img 
-              src={isDarkMode ? Dark_mode : Light_mode}
-              alt="Clamp Logo" 
+              src={isDarkMode ? Light_mode : Dark_mode}
+              alt="Quyl Logo" 
               className="w-full h-full object-contain"
               onError={(e) => {
                 console.log('Logo failed to load:', e.target.src);

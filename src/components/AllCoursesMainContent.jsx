@@ -3,13 +3,14 @@ import SubjectCardAdd from './SubjectCardAdd';
 import SubjectGrid from "./SubjectGrid";
 import { SUBJECTS } from "../data";
 import { FaSort, FaFilter } from "react-icons/fa";
-import { useDarkMode } from './useDarkMode';
+import { useTheme } from "../context/ThemeContext";
+
 
 
   
 
 export default function MyCoursesMainContent() {
-    const { isDark, toggleTheme } = useDarkMode();
+    const { isDark, toggleTheme } = useTheme();
     return (
         <div className="w-screen px-[1.87rem] flex flex-col bg-[#FAFAFE] dark:bg-[#131517]">
             <div className="flex justify-between my-[1.88rem]">

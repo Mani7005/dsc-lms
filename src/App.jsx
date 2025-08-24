@@ -1,19 +1,20 @@
 import './index.css';
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useParams } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AuthPage from './components/AuthPage';
 import Profile from './components/profile';
 import OTP_page from './components/OTP_page';
 import SignUp from './components/SignUp';
 import CourseDashboard from './components/Dashboard';
 import IndividualSubjectContent from './components/IndividualSubjectContent';
-import { ThemeProvider } from './context/ThemeContext';
+import { ThemeProvider } from "./context/ThemeContext"; // make sure path is correct
+
 import { SUBJECTS } from './data';
 
 // App content that uses theme
 function AppContent() {
   return (
-    <div className="min-h-screen min-w-full overflow-x-hidden transition-colors duration-300 bg-white dark:bg-[#131517] text-gray-900 dark:text-white">
+    <div className="min-h-screen transition-colors duration-300 bg-white dark:bg-[#131517] text-gray-900 dark:text-white">
       <Router>
         <Routes>
           <Route path="/" element={<AuthPage />} />
@@ -24,7 +25,7 @@ function AppContent() {
           <Route path="/dashboard/my-courses" element={<CourseDashboard pageType="myCourses" />} />
           <Route path="/dashboard/all-courses" element={<CourseDashboard pageType="allCourses" />} />
           <Route path="/dashboard/gdsc-courses" element={<CourseDashboard pageType="gdscCourses" />} />
-          {/* Individual subject routes */}
+
           <Route path="/dashboard/subject/:subjectCode" element={<SubjectPageWrapper />} />
         </Routes>
       </Router>
@@ -57,7 +58,7 @@ function App() {
   );
 }
 
-export default App;
+export default App; 
 
 
 

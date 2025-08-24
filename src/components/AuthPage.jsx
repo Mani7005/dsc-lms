@@ -3,6 +3,7 @@ import image from "../assets/images/image.png";
 import logo from "../assets/images/logo.png";
 import gdsc from "../assets/images/gdsc.png";
 //import rec_logo from "../assets/images/rec_logo.png";
+// In Sidebar.jsx (which is probably in src/components/)
 import { useTheme } from "../context/ThemeContext";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -86,7 +87,7 @@ const AuthPage = () => {
         <div className="flex items-center justify-center mb-6">
           <div className="flex items-center space-x-2">
             <img 
-              src={isDarkMode ? Dark_mode : Light_mode} 
+              src={isDarkMode ? Dark_mode : Dark_mode} 
               alt="Logo" 
               className="h-8 w-8 object-contain" 
             />
