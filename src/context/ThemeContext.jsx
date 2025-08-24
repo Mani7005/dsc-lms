@@ -17,24 +17,41 @@ export function useTheme() {
 export function ThemeProvider({ children }) {
   // Initialize state from localStorage or default to light mode
   const [isDarkMode, setIsDarkMode] = useState(() => {
-    try {
-      const saved = localStorage.getItem('theme');
-      return saved === 'dark';
-    } catch (error) {
-      return false;
+    // Check if we're in the browser environment
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = localStorage.getItem('theme');
+        return saved === 'dark';
+      } catch (error) {
+        console.warn('Failed to read theme from localStorage:', error);
+        return false;
+      }
     }
+    // Default to light mode for SSR
+    return false;
   });
 
   // Apply theme changes to DOM
   useEffect(() => {
-    const root = document.documentElement;
-    
-    if (isDarkMode) {
-      root.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      root.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
+    // Only run in browser environment
+    if (typeof window !== 'undefined') {
+      const root = document.documentElement;
+      
+      if (isDarkMode) {
+        root.classList.add('dark');
+        try {
+          localStorage.setItem('theme', 'dark');
+        } catch (error) {
+          console.warn('Failed to save theme to localStorage:', error);
+        }
+      } else {
+        root.classList.remove('dark');
+        try {
+          localStorage.setItem('theme', 'light');
+        } catch (error) {
+          console.warn('Failed to save theme to localStorage:', error);
+        }
+      }
     }
   }, [isDarkMode]);
 

@@ -1,6 +1,6 @@
 import './index.css';
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useParams } from "react-router-dom";
 import AuthPage from './components/AuthPage';
 import Profile from './components/profile';
 import OTP_page from './components/OTP_page';

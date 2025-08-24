@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import image from "../assets/images/image.png";
 import logo from "../assets/images/logo.png";
 import gdsc from "../assets/images/gdsc.png";
-import rec_logo from "../assets/images/rec_logo.png";
+//import rec_logo from "../assets/images/rec_logo.png";
+import { useTheme } from "../context/ThemeContext";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import api from "../utils/api";
+import Dark_mode from "../assets/images/Dark mode.png"; // Add dark version
+import Light_mode from "../assets/images/Light mode.png";
 
 async function sendVerifyOtp() {
   try {
@@ -26,6 +29,7 @@ async function verifyAccount(otp) {
 
 
 const AuthPage = () => {
+  const { isDarkMode } = useTheme(); // Get isDarkMode from theme context
   const [formData, setFormData] = useState({
     email: "",
     otp: "",
@@ -81,21 +85,25 @@ const AuthPage = () => {
       <div className="relative z-10 bg-white rounded-[20px] p-10 scale-110 w-full max-w-md mx-4 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
         <div className="flex items-center justify-center mb-6">
           <div className="flex items-center space-x-2">
-            <img src={rec_logo} alt="Logo" className="h-8 w-8 object-contain" />
+            <img 
+              src={isDarkMode ? Dark_mode : Light_mode} 
+              alt="Logo" 
+              className="h-8 w-8 object-contain" 
+            />
             <span
-              className=" font-bold text-[26px] text-center"
+              className="font-bold text-[26px] text-center text-black"
               style={{
                 fontFamily: '"Poppins", sans-serif',
               }}
             >
-              CLAMP
+              QUYL
             </span>
           </div>
         </div>
 
         {/* Login Header */}
         <h2
-          className="font-bold text-[22px] text-left p-2"
+          className="font-bold text-[22px] text-left p-2 text-black"
           style={{ fontFamily: '"Poppins' }}
         >
           Login
@@ -111,7 +119,7 @@ const AuthPage = () => {
               placeholder="Email ID"
               value={formData.email}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent placeholder-gray-500 bg-white"
+              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent placeholder-gray-500 bg-white text-black"
               required
             />
             <button
@@ -131,7 +139,7 @@ const AuthPage = () => {
               placeholder="Enter OTP"
               value={formData.otp}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-500 bg-white"
+              className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-500 bg-white text-black"
               required
             />
           </div>
@@ -152,7 +160,7 @@ const AuthPage = () => {
             )}
           </button>
           <div className="text-center mt-4">
-          <span className="text-gray-600">Don’t have an account? </span>
+          <span className="text-gray-600">Don't have an account? </span>
           <Link 
             to="/signup" 
             className="text-[#4285F4] font-medium hover:underline"
