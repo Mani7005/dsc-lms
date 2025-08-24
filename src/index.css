@@ -1,24 +1,22 @@
-/* src/index.css - Correct Tailwind v4 setup */
+/* src/index.css */
 @import "tailwindcss";
 
-/* Configure class-based dark mode for v4 */
-@variant dark (.dark &);
+/* Enable class-based dark mode in Tailwind v4 */
+@variant dark (&:where(.dark, .dark *));
 
 @layer base {
   :root {
     color-scheme: light;
   }
-  
+
   .dark {
     color-scheme: dark;
   }
-  
-  /* Ensure smooth transitions */
+
+  /* Smooth transitions */
   * {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   }
-
-  /* TEMPORARY TEST - Remove after testing */
-
 }
+
 

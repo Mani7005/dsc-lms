@@ -87,12 +87,7 @@ export default function ClampNotebook({ subjectCode, subjectName }) {
             )}
           </div>
         </div>
-        <button
-          onClick={toggleTheme}
-          className="p-2 rounded-lg text-gray-500 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-        >
-          {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-        </button>
+        
       </div>
 
       <div className="flex-1 p-6 space-y-4 overflow-y-auto">

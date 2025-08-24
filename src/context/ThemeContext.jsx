@@ -1,72 +1,67 @@
 // src/context/ThemeContext.jsx
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from "react";
 
 // Create the context
 const ThemeContext = createContext(undefined);
 
-// Custom hook to use the theme context
+// Custom hook
 export function useTheme() {
   const context = useContext(ThemeContext);
   if (context === undefined) {
-    throw new Error('useTheme must be used within a ThemeProvider');
+    throw new Error("useTheme must be used within a ThemeProvider");
   }
   return context;
 }
 
-// Theme provider component
 export function ThemeProvider({ children }) {
-  // Initialize state from localStorage or default to light mode
+  // Initialize from localStorage OR system preference
   const [isDarkMode, setIsDarkMode] = useState(() => {
-    // Check if we're in the browser environment
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       try {
-        const saved = localStorage.getItem('theme');
-        return saved === 'dark';
+        const saved = localStorage.getItem("theme");
+        if (saved) return saved === "dark";
+        // fallback → system preference
+        return window.matchMedia("(prefers-color-scheme: dark)").matches;
       } catch (error) {
-        console.warn('Failed to read theme from localStorage:', error);
+        console.warn("Failed to read theme from localStorage:", error);
         return false;
       }
     }
-    // Default to light mode for SSR
     return false;
   });
 
-  // Apply theme changes to DOM
+  // Apply theme class to <html>
   useEffect(() => {
-    // Only run in browser environment
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       const root = document.documentElement;
-      
       if (isDarkMode) {
-        root.classList.add('dark');
-        try {
-          localStorage.setItem('theme', 'dark');
-        } catch (error) {
-          console.warn('Failed to save theme to localStorage:', error);
-        }
+        root.classList.add("dark");
+        localStorage.setItem("theme", "dark");
       } else {
-        root.classList.remove('dark');
-        try {
-          localStorage.setItem('theme', 'light');
-        } catch (error) {
-          console.warn('Failed to save theme to localStorage:', error);
-        }
+        root.classList.remove("dark");
+        localStorage.setItem("theme", "light");
       }
     }
   }, [isDarkMode]);
 
-  // Toggle function
-  const toggleTheme = () => {
-    setIsDarkMode(prevMode => !prevMode);
-  };
+  // Sync with system theme changes (optional but nice!)
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+      const handleChange = (e) => {
+        if (!localStorage.getItem("theme")) {
+          setIsDarkMode(e.matches);
+        }
+      };
+      mediaQuery.addEventListener("change", handleChange);
+      return () => mediaQuery.removeEventListener("change", handleChange);
+    }
+  }, []);
 
-  const value = {
-    isDarkMode,
-    toggleTheme
-  };
+  const toggleTheme = () => setIsDarkMode((prev) => !prev);
 
   return (
-    <ThemeContext.Provider value={value}>
+    <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
